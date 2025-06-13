@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Frog &amp; the Ox – demo</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400;700&family=Spectral:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@400;700;900&family=Lora:ital,wght@0,400;0,700;1,400&family=Uncial+Antiqua&family=Cardo:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --heading-font: 'IM Fell English SC', serif;
+      --body-font: 'EB Garamond', serif;
+    }
+
+    body{
+      font-family: var(--body-font);
+      font-size: 1.15rem;       /* ≈18 px on default 16 px root */
+      line-height: 1.6;
+      max-width: 44rem;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      background:#fdfdfb;
+      color:#222;
+    }
+
+    h1{
+      font-family: var(--heading-font);
+      font-weight: 400;
+      text-align:center;
+      margin-bottom:1.5rem;
+      font-size:2rem;
+    }
+
+    /* decorative drop cap for first paragraph */
+    p:first-of-type::first-letter{
+      font-family: var(--heading-font);
+      font-size:3.8rem;
+      float:left;
+      line-height:1;
+      padding-right:0.2em;
+      padding-top:0.05em;
+    }
+
+    select{
+      position: fixed;
+      top:1rem;
+      right:1rem;
+      padding:0.3rem 0.5rem;
+      font-size:1rem;
+      background:#fff;
+      border:1px solid #ccc;
+      border-radius:4px;
+    }
+
+    hr{border:none;border-top:1px solid #d9d9d9;margin:3rem auto;width:50%;}
+
+    @media (max-width:600px){
+      body{font-size:1rem;padding:1rem;}
+    }
+  </style>
+</head>
+<body>
+
+<select id="fontSelector" aria-label="Choose fairy‑tale style">
+  <option value="fell" selected>Classic Fell / Garamond</option>
+  <option value="cinzel">Cinzel Decorative / Spectral</option>
+  <option value="playfair">Playfair Display / Lora</option>
+  <option value="uncial">Uncial Antiqua / Cardo</option>
+</select>
+
+<h1>The Frogs &amp; the Ox</h1>
+
+<p>An Ox came down to a reedy pool to drink. As he splashed heavily into the water, he crushed a young Frog into the mud.</p>
+
+<p>The old Frog soon missed the little one and asked his brothers and sisters what had become of him.</p>
+
+<p>&ldquo;A great big monster,&rdquo; said one of them, &ldquo;stepped on little brother with one of his huge feet!&rdquo;</p>
+
+<p>&ldquo;Big, was he!&rdquo; said the old Frog, puffing herself up. &ldquo;Was he as big as this?&rdquo;</p>
+
+<p>&ldquo;Oh, much bigger!&rdquo; they cried.</p>
+
+<p>The Frog puffed up still more. “He could not have been bigger than this,” she said. But the little Frogs all declared that the monster was much, much bigger and the old Frog kept puffing herself out more and more until, all at once, she burst.</p>
+
+<hr>
+
+<p style="text-align:center;font-style:italic;">Do not attempt the impossible.</p>
+
+<script>
+  const selector = document.getElementById('fontSelector');
+
+  const themes = {
+    fell:   { heading: "'IM Fell English SC', serif",   body: "'EB Garamond', serif" },
+    cinzel: { heading: "'Cinzel Decorative', serif",     body: "'Spectral', serif" },
+    playfair: { heading: "'Playfair Display', serif",    body: "'Lora', serif" },
+    uncial: { heading: "'Uncial Antiqua', serif",        body: "'Cardo', serif" }
+  };
+
+  function applyTheme(key){
+    const theme = themes[key];
+    document.documentElement.style.setProperty('--heading-font', theme.heading);
+    document.documentElement.style.setProperty('--body-font', theme.body);
+  }
+
+  selector.addEventListener('change', e => applyTheme(e.target.value));
+
+  // Set initial style
+  applyTheme(selector.value);
+</script>
+
+</body>
+</html>
